@@ -201,6 +201,8 @@ gateway:
   # 强制按 Codex CLI 处理 /openai/v1/responses 请求（用于网关未透传/改写 User-Agent 的兜底）。
   #
   # 注意：开启后会影响所有客户端的行为（不仅限于 VS Code / Codex CLI），请谨慎开启。
+  # 如果你把 OpenAI OAuth 账号打了 codex_cli_only 标记，但前端实际跑的是 Claude Code，
+  # 需要打开这个开关，否则服务端会按官方 Codex 白名单拒绝请求。
   force_codex_cli: false
   # Optional: template file used to build the final top-level Codex `instructions`.
   # 可选：用于构建最终 Codex 顶层 `instructions` 的模板文件路径。

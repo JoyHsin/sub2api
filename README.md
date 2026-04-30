@@ -564,6 +564,10 @@ export ANTHROPIC_BASE_URL="http://localhost:8080/antigravity"
 export ANTHROPIC_AUTH_TOKEN="sk-xxx"
 ```
 
+If you are routing Claude Code through OpenAI OAuth accounts that have `codex_cli_only`
+enabled, also set `gateway.force_codex_cli: true` in the server config. Otherwise the
+OpenAI OAuth codex-only restriction will reject non-Codex user agents.
+
 ### Hybrid Scheduling Mode
 
 Antigravity accounts support optional **hybrid scheduling**. When enabled, the general endpoints `/v1/messages` and `/v1beta/` will also route requests to Antigravity accounts.

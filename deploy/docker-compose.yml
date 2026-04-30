@@ -24,7 +24,7 @@ services:
         soft: 100000
         hard: 100000
     ports:
-      - "${BIND_HOST:-0.0.0.0}:${SERVER_PORT:-8080}:8080"
+      - "127.0.0.1:${SERVER_PORT:-8080}:8080"
     volumes:
       # Data persistence (config.yaml will be auto-generated here)
       - sub2api_data:/app/data
@@ -218,13 +218,15 @@ services:
         hard: 100000
     volumes:
       - redis_data:/data
-    command: >
-      sh -c '
-        redis-server
-        --save 60 1
-        --appendonly yes
-        --appendfsync everysec
-        ${REDIS_PASSWORD:+--requirepass "$REDIS_PASSWORD"}'
+    command:
+      - sh
+      - -c
+      - |
+          if [ -n "$REDIS_PASSWORD" ]; then
+            exec redis-server --save 60 1 --appendonly yes --appendfsync everysec --requirepass "$REDIS_PASSWORD"
+          else
+            exec redis-server --save 60 1 --appendonly yes --appendfsync everysec
+          fi
     environment:
       - TZ=${TZ:-Asia/Shanghai}
       # REDISCLI_AUTH is used by redis-cli for authentication (safer than -a flag)
@@ -239,6 +241,26 @@ services:
       start_period: 5s
     ports:
       - 6379:6379
+
+  # ===========================================================================
+  # Caddy TLS Reverse Proxy
+  # ===========================================================================
+  caddy:
+    image: caddy:2.8-alpine
+    container_name: sub2api-caddy
+    restart: unless-stopped
+    depends_on:
+      sub2api:
+        condition: service_started
+    ports:
+      - "8443:8443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./tls:/etc/caddy/tls:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - sub2api-network
 # =============================================================================
 # Volumes
 # =============================================================================
@@ -248,6 +270,10 @@ volumes:
   postgres_data:
     driver: local
   redis_data:
+    driver: local
+  caddy_data:
+    driver: local
+  caddy_config:
     driver: local
 
 # =============================================================================

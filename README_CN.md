@@ -627,6 +627,10 @@ export ANTHROPIC_BASE_URL="http://localhost:8080/antigravity"
 export ANTHROPIC_AUTH_TOKEN="sk-xxx"
 ```
 
+如果你是用带有 `codex_cli_only` 的 OpenAI OAuth 账号来接 Claude Code，
+还需要在服务端配置里打开 `gateway.force_codex_cli: true`。否则 OpenAI OAuth
+的 Codex 白名单会把非 Codex 的客户端 UA 拒掉。
+
 ### 混合调度模式
 
 Antigravity 账户支持可选的**混合调度**功能。开启后，通用端点 `/v1/messages` 和 `/v1beta/` 也会调度该账户。
