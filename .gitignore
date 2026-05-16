@@ -123,6 +123,7 @@ scripts
 #openspec/
 code-reviews/
 AGENTS.md
+CODEX_HANDOFF.md
 backend/cmd/server/server
 deploy/docker-compose.override.yml
 .gocache/
