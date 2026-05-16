@@ -110,6 +110,11 @@ export default {
     }
   },
 
+  imageGeneration: {
+    title: 'AI 生图',
+    description: '统一接入图片生成能力，支持文生图、图生图和模板提示词'
+  },
+
   // Key Usage Query Page
   keyUsage: {
     title: 'API Key 用量查询',
@@ -344,6 +349,7 @@ export default {
     dashboard: '仪表盘',
     announcements: '公告',
     apiKeys: 'API 密钥',
+    imageGeneration: 'AI 生图',
     usage: '使用记录',
     redeem: '兑换',
     affiliate: '邀请返利',

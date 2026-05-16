@@ -110,6 +110,11 @@ export default {
     }
   },
 
+  imageGeneration: {
+    title: 'AI Image Generation',
+    description: 'Generate and edit images through the unified image gateway with prompt templates'
+  },
+
   // Key Usage Query Page
   keyUsage: {
     title: 'API Key Usage',
@@ -344,6 +349,7 @@ export default {
     dashboard: 'Dashboard',
     announcements: 'Announcements',
     apiKeys: 'API Keys',
+    imageGeneration: 'AI Images',
     usage: 'Usage',
     redeem: 'Redeem',
     affiliate: 'Affiliate Rebates',
