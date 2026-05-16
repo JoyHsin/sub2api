@@ -315,9 +315,6 @@
                 <Icon name="document" size="lg" />
               </div>
               <h4 class="mt-4 text-base font-semibold text-gray-950 dark:text-white">功能敬请期待</h4>
-              <p class="mx-auto mt-2 max-w-lg text-sm leading-6 text-gray-500 dark:text-dark-300">
-                历史生成需要稳定的对象存储来保存图片文件和缩略图。当前版本仅展示本次生成结果，后续接入存储桶后再开放历史归档。
-              </p>
             </div>
           </section>
         </main>
